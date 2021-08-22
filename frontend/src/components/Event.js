@@ -11,10 +11,11 @@ const Event = ({ event }) => {
   let team2 = `|${eventNameTrim[2]}|`
   console.log(team1, 'vs', team2)
 
-  let odds = []
+  let allOdds = []
 
   event.markets.forEach((market) => {
     let odd = {}
+
     if (market.displayName !== 'Total') {
       odd = { market: market.displayName, [team1]: 0, [team2]: 0 }
 
@@ -22,6 +23,7 @@ const Event = ({ event }) => {
         odd[team1] = '-'
         odd[team2] = '-'
       }
+
       market.selections.forEach((selection) => {
         if (team1 === selection.name) {
           odd[team1] = selection.price.a
@@ -29,9 +31,25 @@ const Event = ({ event }) => {
           odd[team2] = selection.price.a
         }
       })
-      odds.push(odd)
+
+      allOdds.push(odd)
     }
   })
+
+  // remove duplicate objects (repeating markets)
+  let odds = []
+
+  let uniqueObject = {}
+
+  for (let i in allOdds) {
+    let objTitle = allOdds[i]['market']
+
+    uniqueObject[objTitle] = allOdds[i]
+  }
+
+  for (let i in uniqueObject) {
+    odds.push(uniqueObject[i])
+  }
 
   console.log(odds)
 
