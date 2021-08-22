@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, ListGroup, Table } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 
 const Event = ({ event }) => {
   let eventName = event.name.split('|')

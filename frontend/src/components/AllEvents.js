@@ -35,8 +35,6 @@ const AllEvents = ({ match }) => {
             <Competitions competition={competition} />
           </Col>
         )
-
-        // return <li>{event}</li>
       })}
     </>
   )
