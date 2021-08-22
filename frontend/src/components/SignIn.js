@@ -3,29 +3,38 @@ import { Link } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import FormContainer from '../components/FormContainer'
 import { UserContext } from '../context/UserContext'
+import axios from 'axios'
 
 const LoginScreen = ({ location, history }) => {
   const { user, setUser } = useContext(UserContext)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [response, setResponse] = useState('')
 
-  const userInfo = { userName: '', password: '', loggedIn: false }
+  const userInfo = { userName: '', password: '', response: '', loggedIn: false }
 
   const redirect = location.search ? location.search.split('=')[1] : '/'
 
-  useEffect(() => {
-    console.log(email, password)
-  }, [email, password])
+  const fetchUserData = async () => {
+    const { data } = await axios.get('/api/login')
+    setResponse(data)
+  }
+
+  // useEffect(() => {
+  //   console.log(email, password, response)
+  // }, [email, password])
 
   const submitHandler = (e) => {
     e.preventDefault()
 
     // mimics a successful login to server
+    fetchUserData()
+
     userInfo.userName = email
     userInfo.password = password
     userInfo.loggedIn = true
-
+    userInfo.response = response
     setUser(userInfo)
     history.push('/')
   }
@@ -42,7 +51,6 @@ const LoginScreen = ({ location, history }) => {
             value={email}
             onChange={(e) => {
               setEmail(e.target.value)
-              console.log(email)
             }}
           ></Form.Control>
         </Form.Group>

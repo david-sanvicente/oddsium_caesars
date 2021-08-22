@@ -1,10 +1,10 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { UserContext } from '../context/UserContext'
 
 const Header = () => {
-  const { user, setValue } = useContext(UserContext)
+  const { user, setUser } = useContext(UserContext)
 
   const [userInfo, setUserInfo] = useState('')
 
@@ -12,7 +12,9 @@ const Header = () => {
     console.log('logout')
   }
 
-  console.log(user)
+  useEffect(() => {
+    console.log(user)
+  })
 
   return (
     <header>
@@ -25,8 +27,8 @@ const Header = () => {
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ms-auto'>
-              {userInfo ? (
-                <NavDropdown title={userInfo.name} id='username'>
+              {user ? (
+                <NavDropdown title={user.userName} id='username'>
                   <LinkContainer to='/profile'>
                     <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>
