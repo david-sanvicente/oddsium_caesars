@@ -9,7 +9,6 @@ const Event = ({ event }) => {
 
   let team1 = `|${eventNameTrim[0]}|`
   let team2 = `|${eventNameTrim[2]}|`
-  console.log(team1, 'vs', team2)
 
   let allOdds = []
 
@@ -61,8 +60,6 @@ const Event = ({ event }) => {
   for (let i in uniqueObject) {
     odds.push(uniqueObject[i])
   }
-
-  console.log(odds)
 
   return (
     <>
