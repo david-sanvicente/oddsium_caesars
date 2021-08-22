@@ -1,18 +1,33 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import FormContainer from '../components/FormContainer'
+import { UserContext } from '../context/UserContext'
 
 const LoginScreen = ({ location, history }) => {
+  const { user, setUser } = useContext(UserContext)
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const userInfo = { userName: '', password: '', loggedIn: false }
+
   const redirect = location.search ? location.search.split('=')[1] : '/'
 
-  useEffect(() => {}, [])
+  useEffect(() => {
+    console.log(email, password)
+  }, [email, password])
 
   const submitHandler = (e) => {
-    console.log('Submit!')
+    e.preventDefault()
+
+    // mimics a successful login to server
+    userInfo.userName = email
+    userInfo.password = password
+    userInfo.loggedIn = true
+
+    setUser(userInfo)
+    history.push('/')
   }
 
   return (
@@ -27,6 +42,7 @@ const LoginScreen = ({ location, history }) => {
             value={email}
             onChange={(e) => {
               setEmail(e.target.value)
+              console.log(email)
             }}
           ></Form.Control>
         </Form.Group>

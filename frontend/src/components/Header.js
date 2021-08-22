@@ -1,19 +1,24 @@
-import React, { useState } from 'react'
-import { Route } from 'react-router-dom'
+import React, { useState, useContext } from 'react'
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
+import { UserContext } from '../context/UserContext'
 
 const Header = () => {
+  const { user, setValue } = useContext(UserContext)
+
   const [userInfo, setUserInfo] = useState('')
 
   const logoutHandler = () => {
     console.log('logout')
   }
 
+  console.log(user)
+
   return (
     <header>
       <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
         <Container>
+          <div></div>
           <LinkContainer to='/'>
             <Navbar.Brand>NJ Resorts Casino</Navbar.Brand>
           </LinkContainer>
