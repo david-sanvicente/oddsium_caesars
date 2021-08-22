@@ -5,9 +5,7 @@ import { Link } from 'react-router-dom'
 const Sport = ({ sport }) => {
   return (
     <Card className='my-3 p-3 rounded'>
-      <Link to={`/allevents/${sport}`}>
-        {/* <Card.Img src={product.image} variant='top' /> */}
-      </Link>
+      <Link to={`/allevents/${sport}`}></Link>
       <Card.Body>
         <Link to={`/allevents/${sport}`}>
           <Card.Title as='div'>

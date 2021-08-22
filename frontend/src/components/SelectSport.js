@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, Container } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import Sport from '../components/Sport'
 
 const SelectSport = () => {
@@ -13,8 +13,10 @@ const SelectSport = () => {
     'boxing',
     'baseball',
   ]
+
   return (
     <>
+      <h5>Select a sport</h5>
       <Row>
         {allSports.map((sport, idx) => {
           return (

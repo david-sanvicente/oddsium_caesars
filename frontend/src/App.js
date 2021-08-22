@@ -12,7 +12,6 @@ const App = () => {
       <Header />
       <main>
         <Container className='py-3'>
-          <h1>Welcome to NJ Resorts Casino</h1>
           <Route path='/allevents/:id' component={AllEvents} />
           <Route path='/' component={SelectSport} exact />
         </Container>

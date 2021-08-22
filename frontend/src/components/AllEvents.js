@@ -21,7 +21,7 @@ const AllEvents = ({ match }) => {
 
   return (
     <>
-      <h1>{eventName}</h1>
+      <h3>{eventName}</h3>
       {events.map((competition, idx) => {
         return (
           <Col
