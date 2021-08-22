@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card } from 'react-bootstrap'
+import { Card, ListGroup, Table } from 'react-bootstrap'
 
 const Event = ({ event }) => {
   let eventName = event.name.split('|')
@@ -16,7 +16,10 @@ const Event = ({ event }) => {
   event.markets.forEach((market) => {
     let odd = {}
 
-    if (market.displayName !== 'Total') {
+    if (
+      market.displayName !== 'Total' ||
+      market.displayName !== 'Total Points'
+    ) {
       odd = { market: market.displayName, [team1]: 0, [team2]: 0 }
 
       if (market.name === null) {
@@ -26,9 +29,17 @@ const Event = ({ event }) => {
 
       market.selections.forEach((selection) => {
         if (team1 === selection.name) {
-          odd[team1] = selection.price.a
+          if (selection.price !== null) {
+            odd[team1] = selection.price.a
+          } else {
+            odd[team1] = '-'
+          }
         } else if (team2 === selection.name) {
-          odd[team2] = selection.price.a
+          if (selection.price !== null) {
+            odd[team2] = selection.price.a
+          } else {
+            odd[team2] = '-'
+          }
         }
       })
 
@@ -54,14 +65,21 @@ const Event = ({ event }) => {
   console.log(odds)
 
   return (
-    <Card className='my-3 p-3 rounded'>
-      <Card.Body>
-        <Card.Title as='div'>
-          <strong>{event.name}</strong>
-        </Card.Title>
-        <Card.Text as='div'>{'Odds'}</Card.Text>
-      </Card.Body>
-    </Card>
+    <>
+      <Card style={{ width: '40rem' }} className='my-3 p-3 rounded'>
+        <Card.Body>
+          <Card.Title as='div'>
+            <strong>{event.name}</strong>
+          </Card.Title>
+          <h6>Odds</h6>
+          {odds.map((odd) => (
+            <Card.Text>
+              {`Market: ${odd.market}, ${team1}: ${odd[team1]}, ${team2}: ${odd[team2]}`}
+            </Card.Text>
+          ))}
+        </Card.Body>
+      </Card>
+    </>
   )
 }
 
