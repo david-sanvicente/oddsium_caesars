@@ -6,11 +6,10 @@ import { UserContext } from '../context/UserContext'
 import axios from 'axios'
 
 const LoginScreen = ({ location, history }) => {
-  const { user, setUser } = useContext(UserContext)
+  const { setUser } = useContext(UserContext)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [response, setResponse] = useState({})
 
   const redirect = location.search ? location.search.split('=')[1] : '/'
 
@@ -18,9 +17,6 @@ const LoginScreen = ({ location, history }) => {
     const { data } = await axios.post('/api/login', { email, password })
 
     return data
-    // setResponse(data)
-
-    console.log('User Profile: ', response)
   }
 
   const submitHandler = async (e) => {
@@ -36,6 +32,10 @@ const LoginScreen = ({ location, history }) => {
     }
 
     setUser(userInfo)
+
+    console.log(data)
+
+    history.push('/')
   }
 
   return (

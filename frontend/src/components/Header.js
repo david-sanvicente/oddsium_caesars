@@ -1,18 +1,14 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { UserContext } from '../context/UserContext'
 
 const Header = () => {
-  const { user, setUser } = useContext(UserContext)
+  const { user } = useContext(UserContext)
 
   const logoutHandler = () => {
     console.log('logout')
   }
-
-  useEffect(() => {
-    console.log('user: ', user)
-  })
 
   return (
     <header>

@@ -4,7 +4,12 @@ This application was built by David Sanvicente as an evaluation for employiment 
 
 # Usage
 
-to install dependencies: npm install
+to install dependencies:
+cd frontend
+npm install
+cd ..
+npm install
+
 Run frontend (:3000) & backend (:5000): npm run dev
 Run backend only: npm run server
 
