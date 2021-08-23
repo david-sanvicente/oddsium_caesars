@@ -11,7 +11,7 @@ install dependencies in both frontend and backend directories:
 - cd ..
 - npm install
 
-Run frontend (:3000) & backend (:5000): npm run dev
+Run frontend (:3000) & backend (:5000): npm run dev<br />
 Run backend only: npm run server
 
 # Credentials
