@@ -19,7 +19,7 @@ const LoginScreen = ({ location, history }) => {
 
     setResponse(data)
 
-    console.log('res: ', response)
+    console.log('User Profile: ', response)
   }
 
   const submitHandler = (e) => {
@@ -31,7 +31,6 @@ const LoginScreen = ({ location, history }) => {
       userName: response.USERNAME,
       userId: response.ENCRYPTED_USER_ID,
       password: password,
-      // response: response,
       balance: response.BALANCE,
       loggedIn: true,
     }

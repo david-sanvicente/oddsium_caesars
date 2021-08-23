@@ -6,8 +6,6 @@ import { UserContext } from '../context/UserContext'
 const Header = () => {
   const { user, setUser } = useContext(UserContext)
 
-  // const [userInfo, setUserInfo] = useState('')
-
   const logoutHandler = () => {
     console.log('logout')
   }
