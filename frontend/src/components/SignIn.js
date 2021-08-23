@@ -9,6 +9,7 @@ const LoginScreen = ({ location, history }) => {
   const { user, setUser } = useContext(UserContext)
 
   const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [response, setResponse] = useState({})
 
   const redirect = location.search ? location.search.split('=')[1] : '/'
@@ -16,20 +17,21 @@ const LoginScreen = ({ location, history }) => {
   const fetchUserData = async (email, password) => {
     const { data } = await axios.post('/api/login', { email, password })
 
-    setResponse(data)
+    return data
+    // setResponse(data)
 
     console.log('User Profile: ', response)
   }
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault()
 
-    fetchUserData(email, password)
+    const data = await fetchUserData(email, password)
 
     const userInfo = {
-      userName: response.USERNAME,
-      userId: response.ENCRYPTED_USER_ID,
-      balance: response.BALANCE,
+      userName: data.USERNAME,
+      userId: data.ENCRYPTED_USER_ID,
+      balance: data.BALANCE,
       loggedIn: true,
     }
 
