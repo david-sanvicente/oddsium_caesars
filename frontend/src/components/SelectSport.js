@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import Sport from '../components/Sport'
+import { UserContext } from '../context/UserContext'
 
 const SelectSport = () => {
+  const { user, setUser } = useContext(UserContext)
+
   const allSports = [
     'football',
     'ufcmma',

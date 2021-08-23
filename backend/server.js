@@ -1,6 +1,6 @@
 const express = require('express')
 const fetch = require('node-fetch')
-var bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
 
 const app = express()
 app.use(bodyParser.json())
@@ -25,7 +25,7 @@ app.get('/api/allevents/:id', (req, res) => {
     })
 })
 
-app.get('/api/login', (req, res) => {
+app.post('/api/login', (req, res) => {
   const { email, password } = req.body
 
   fetch(
@@ -44,13 +44,15 @@ app.get('/api/login', (req, res) => {
         'Sec-GPC': '1',
       },
       referrer: 'https://www.williamhill.com/',
-      body: `username=${email}&password=${password}25&ClientTimezone=180&CurrencyCode=USD`,
+      body: `username=${email}&password=${password}&ClientTimezone=180&CurrencyCode=USD`,
       method: 'POST',
       mode: 'cors',
     }
   )
     .then((res) => res.json())
-    .then((json) => res.send(json.S2C))
+    .then((json) => {
+      console.log(json), res.send(json.S2C.PLAYER)
+    })
 })
 
 app.listen(5000, console.log(`Server running on port 5000`))

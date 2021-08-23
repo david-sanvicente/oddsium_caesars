@@ -6,27 +6,27 @@ import { UserContext } from '../context/UserContext'
 const Header = () => {
   const { user, setUser } = useContext(UserContext)
 
-  const [userInfo, setUserInfo] = useState('')
+  // const [userInfo, setUserInfo] = useState('')
 
   const logoutHandler = () => {
     console.log('logout')
   }
 
   useEffect(() => {
-    console.log(user)
+    console.log('user: ', user)
   })
 
   return (
     <header>
       <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
         <Container>
-          <div></div>
           <LinkContainer to='/'>
             <Navbar.Brand>NJ Resorts Casino</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ms-auto'>
+              {user && <Nav.Link>Balance: {user.balance}</Nav.Link>}
               {user ? (
                 <NavDropdown title={user.userName} id='username'>
                   <LinkContainer to='/profile'>

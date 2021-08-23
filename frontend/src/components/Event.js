@@ -69,8 +69,8 @@ const Event = ({ event }) => {
             <strong>{event.name}</strong>
           </Card.Title>
           <h6>Odds</h6>
-          {odds.map((odd) => (
-            <Card.Text>
+          {odds.map((odd, idx) => (
+            <Card.Text key={idx}>
               {`Market: ${odd.market}, ${team1}: ${odd[team1]}, ${team2}: ${odd[team2]}`}
             </Card.Text>
           ))}

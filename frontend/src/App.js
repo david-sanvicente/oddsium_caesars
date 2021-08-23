@@ -9,13 +9,13 @@ import SignIn from './components/SignIn'
 import { UserContext } from './context/UserContext'
 
 const App = () => {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState('')
 
-  const providerValue = useMemo(() => ({ user, setUser }), [user, setUser])
+  const userValue = useMemo(() => ({ user, setUser }), [user, setUser])
 
   return (
     <Router>
-      <UserContext.Provider value={providerValue}>
+      <UserContext.Provider value={userValue}>
         <Header />
         <main>
           <Container className='py-3'>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import FormContainer from '../components/FormContainer'
@@ -10,33 +10,33 @@ const LoginScreen = ({ location, history }) => {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [response, setResponse] = useState('')
-
-  const userInfo = { userName: '', password: '', response: '', loggedIn: false }
+  const [response, setResponse] = useState({})
 
   const redirect = location.search ? location.search.split('=')[1] : '/'
 
-  const fetchUserData = async () => {
-    const { data } = await axios.get('/api/login')
-    setResponse(data)
-  }
+  const fetchUserData = async (email, password) => {
+    const { data } = await axios.post('/api/login', { email, password })
 
-  // useEffect(() => {
-  //   console.log(email, password, response)
-  // }, [email, password])
+    setResponse(data)
+
+    console.log('res: ', response)
+  }
 
   const submitHandler = (e) => {
     e.preventDefault()
 
-    // mimics a successful login to server
-    fetchUserData()
+    const userData = fetchUserData(email, password)
 
-    userInfo.userName = email
-    userInfo.password = password
-    userInfo.loggedIn = true
-    userInfo.response = response
+    const userInfo = {
+      userName: response.USERNAME,
+      userId: response.ENCRYPTED_USER_ID,
+      password: password,
+      // response: response,
+      balance: response.BALANCE,
+      loggedIn: true,
+    }
+
     setUser(userInfo)
-    history.push('/')
   }
 
   return (

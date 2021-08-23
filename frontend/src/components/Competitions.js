@@ -7,8 +7,8 @@ const Competitions = ({ competition }) => {
     <Container>
       <h5>{competition.name}</h5>
 
-      {competition.events.map((event) => {
-        return <Event event={event} />
+      {competition.events.map((event, idx) => {
+        return <Event key={idx} event={event} />
       })}
     </Container>
   )
