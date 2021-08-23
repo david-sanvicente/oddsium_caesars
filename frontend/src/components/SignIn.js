@@ -25,7 +25,7 @@ const LoginScreen = ({ location, history }) => {
   const submitHandler = (e) => {
     e.preventDefault()
 
-    const userData = fetchUserData(email, password)
+    fetchUserData(email, password)
 
     const userInfo = {
       userName: response.USERNAME,
