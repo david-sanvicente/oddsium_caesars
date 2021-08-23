@@ -9,7 +9,6 @@ const LoginScreen = ({ location, history }) => {
   const { user, setUser } = useContext(UserContext)
 
   const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   const [response, setResponse] = useState({})
 
   const redirect = location.search ? location.search.split('=')[1] : '/'
@@ -30,7 +29,6 @@ const LoginScreen = ({ location, history }) => {
     const userInfo = {
       userName: response.USERNAME,
       userId: response.ENCRYPTED_USER_ID,
-      password: password,
       balance: response.BALANCE,
       loggedIn: true,
     }
