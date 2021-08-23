@@ -4,15 +4,16 @@ This application was built by David Sanvicente as an evaluation for employment b
 
 # Usage
 
-to install dependencies:
-cd frontend
-npm install
-cd ..
-npm install
+install dependencies in both frontend and backend directories:
+
+- cd frontend
+- npm install
+- cd ..
+- npm install
 
 Run frontend (:3000) & backend (:5000): npm run dev
 Run backend only: npm run server
 
 # Credentials
 
-Credentials are stored in a txt file at the root directory. Williamhill.com is very sensitive to incorrect password entry and will lock the account if entered erroneously 3 times. Should the account become locked, please contact David (sanvicented1@gmail.com) and he will reset.
+Credentials are stored in a .txt file at the root directory. Williamhill.com is very sensitive to incorrect password entry and will lock the account if entered erroneously 3 times. Should the account become locked, please contact David (sanvicented1@gmail.com) and he will reset.
